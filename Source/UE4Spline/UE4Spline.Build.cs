@@ -4,7 +4,7 @@ using UnrealBuildTool;
 
 public class UE4Spline : ModuleRules
 {
-	public UE4Spline(TargetInfo Target)
+	public UE4Spline(ReadOnlyTargetRules Target) : base(Target)
 	{
 		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore" });
 
