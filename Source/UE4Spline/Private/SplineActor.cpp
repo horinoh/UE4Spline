@@ -103,19 +103,19 @@ void ASplineActor::AddMesh(const int32 PointIndex, UStaticMesh* StaticMesh)
 				if (nullptr != SplineMeshComp)
 				{
 					const auto NextPointIndex = (PointIndex + 1) % SplineComp->GetNumberOfSplinePoints();
-					//!< スプラインポイントを取得
+					//!< Get spline points
 					FVector StartLocation, StartTangent;
 					SplineComp->GetLocalLocationAndTangentAtSplinePoint(PointIndex, StartLocation, StartTangent);
 					FVector EndLocation, EndTangent;
 					SplineComp->GetLocalLocationAndTangentAtSplinePoint(NextPointIndex, EndLocation, EndTangent);
 
-					//!< メッシュの開始、終了位置をセット
+					//!< Start(End) point of mesh
 					SplineMeshComp->SetStartAndEnd(StartLocation, StartTangent, EndLocation, EndTangent);
 
-					//!< メッシュをセット
+					//!< Set mesh
 					SplineMeshComp->SetStaticMesh(StaticMesh);
 
-					//!< 傾き、幅と厚み等の設定
+					//!< Slope, width, thickness
 					SplineMeshComp->SetStartRoll(0.0f);
 					SplineMeshComp->SetEndRoll(0.0f);
 					SplineMeshComp->SetStartScale(FVector2D(1.0f, 1.0f));
@@ -125,7 +125,7 @@ void ASplineActor::AddMesh(const int32 PointIndex, UStaticMesh* StaticMesh)
 					SplineMeshComp->SetMobility(EComponentMobility::Static);
 					SplineMeshComp->RegisterComponent();
 
-					//!< コリジョン設定
+					//!< Collision
 					SplineMeshComp->SetCollisionProfileName(UCollisionProfile::BlockAll_ProfileName);
 					//SplineMeshComp->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 					SplineMeshComp->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
