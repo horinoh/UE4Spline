@@ -162,7 +162,8 @@ void ASplineActor::ClearSplineMesh()
 {
 	if (nullptr != SplineComp)
 	{
-		auto Comps = GetComponentsByClass(USplineMeshComponent::StaticClass());
+		TArray<UActorComponent*> Comps;
+		GetComponents(USplineMeshComponent::StaticClass(), Comps);
 		for (auto i : Comps)
 		{
 			i->UnregisterComponent();
